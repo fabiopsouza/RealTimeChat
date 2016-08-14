@@ -1,8 +1,8 @@
 var config = {
-    apiKey: "AIzaSyCMFZFgRy86UlUAZ7W45uPEdlhhAtv4NUg",
-    authDomain: "realtimechat-f9872.firebaseapp.com",
-    databaseURL: "https://realtimechat-f9872.firebaseio.com",
-    storageBucket: "realtimechat-f9872.appspot.com",
+  apiKey: "AIzaSyCMFZFgRy86UlUAZ7W45uPEdlhhAtv4NUg",
+  authDomain: "realtimechat-f9872.firebaseapp.com",
+  databaseURL: "https://realtimechat-f9872.firebaseio.com",
+  storageBucket: "realtimechat-f9872.appspot.com",
 };
 
 firebase.initializeApp(config);
@@ -41,24 +41,35 @@ angular.module('starter', ['ionic', 'starter.controllers', 'starter.services'])
     controller: 'AppCtrl'
   })
 
+  .state('tab.contacts', {
+    url: '/contacts',
+    views: {
+      'tab-contacts': {
+        templateUrl: 'templates/tab-contacts.html',
+        controller: 'ContactsCtrl'
+      }
+    }
+  })
+
   .state('tab.chats', {
-      url: '/chats',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/tab-chats.html',
-          controller: 'ChatsCtrl'
-        }
+    url: '/chats',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/tab-chats.html',
+        controller: 'ChatsCtrl'
       }
-    })
-    .state('tab.chat-detail', {
-      url: '/chats/:chatId',
-      views: {
-        'tab-chats': {
-          templateUrl: 'templates/chat-detail.html',
-          controller: 'ChatDetailCtrl'
-        }
+    }
+  })
+
+  .state('tab.chat-detail', {
+    url: '/chats/:recipientUserId',
+    views: {
+      'tab-chats': {
+        templateUrl: 'templates/chat-detail.html',
+        controller: 'ChatDetailCtrl'
       }
-    })
+    }
+  })
 
   .state('tab.account', {
     url: '/account',

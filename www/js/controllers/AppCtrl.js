@@ -1,11 +1,12 @@
 controllers.controller('AppCtrl', function($scope, $location, $ionicHistory, $ionicPopup, AccountService) {
 
+	$scope.user;
+
 	firebase.auth().onAuthStateChanged(function(user) {
 
 		if (user) {
 			$scope.user = user;
 			AccountService.createOrReplaceAccount(user);
-
 			if($ionicHistory.currentView().stateId == 'login')
 				$location.path("/chats");
 		} else {

@@ -1,24 +1,20 @@
 services.factory('ChatService', function() {
 
-  var userList = [];
+	return {
+		createOrReplace: function(id){
+			console.log(id);
+			database.ref().child('chats').push();
+		},
+		get: function(id){
+			database.ref('/chats').on('value', function(snapshot){
 
-  return {
-    all: function(success) {
-      database.ref('/users').on('value', function(snapshot){
+				console.log(snapshot);
+				snapshot.forEach(function(child){
+					//userList.push(child);
+				});
 
-        userList = [];
-        snapshot.forEach(function(child){
-          userList.push(child);
-        });
-
-        success(userList);
-      });
-    },
-    remove: function(chat) {
-      console.log('remove...');
-    },
-    get: function(chatId) {
-      console.log('get...');
-    }
-  };
+				success();
+			});
+		}
+	};
 });
